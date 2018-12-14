@@ -13,8 +13,8 @@ function initShaders( gl, vertexShaderId, fragmentShaderId )
 
         // Compile the shader to make it readable for the GPU
         gl.compileShader( shader );
-        var success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-        
+        let success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+
         if (!success) {
             // Something went wrong during compilation; get the error
             throw "could not compile shader:" + gl.getShaderInfoLog(shader);
@@ -22,7 +22,7 @@ function initShaders( gl, vertexShaderId, fragmentShaderId )
         else {
             return shader;
         }
-    }
+    };
     
     /* 
      * Setup shader program

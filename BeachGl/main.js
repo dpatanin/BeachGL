@@ -5,7 +5,6 @@ let objects = [];
 
 let posLoc;
 
-// DONE: Deklariere benötigte Locations von Shadervariablen als globale Variablen
 let normalLoc,
     lightPositionLoc,
     IaLoc,
@@ -57,7 +56,7 @@ function main() {
     modelMatrixLoc = gl.getUniformLocation(program, "modelMatrix");
     viewMatrixLoc = gl.getUniformLocation(program, "viewMatrix");
 
-    // Fülle globale Variablen mit Speicherlocations für Materialkoeffizienten und Lichtintensitäten
+    // Globale Variablen mit Speicherlocations für Materialkoeffizienten und Lichtintensitäten
     normalLoc = gl.getAttribLocation(program, "vNormal");
     lightPositionLoc = gl.getUniformLocation(program, "lightPosition");
     IaLoc = gl.getUniformLocation(program, "Ia");
@@ -68,7 +67,7 @@ function main() {
     ksLoc = gl.getUniformLocation(program, "ks");
     specularExponentLoc = gl.getUniformLocation(program, "n");
 
-    // Erstelle mithilfe der Funktionen aus gl-matrix.js eine initiale View Matrix
+    // Initiale View Matrix
     eye = vec3.fromValues(0.0, 0.8, 4.0);
     target = vec3.fromValues(0.0, 0.8, 0.0);
     up = vec3.fromValues(0.0, 1.0, 0.0);
@@ -84,14 +83,13 @@ function main() {
     gl.uniform4fv(IdLoc, [0.8, 0.8, 0.8, 1.0]);
     gl.uniform4fv(IsLoc, [0.7, 0.7, 0.7, 1.0]);
 
-    // Event Listener für Tastatureingaben und Mausbewegung hinzu
     document.addEventListener("mousemove", changeView);
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("keyup", keyUpHandler);
 
     canvas.onmousedown = function () {
         canvas.requestPointerLock();
-    }
+    };
 
     // Object instances
     let palmTree = new PalmTree();
@@ -176,8 +174,6 @@ function update() {
         target[0] -= look[2];
         target[2] += look[0];
     }
-    //UP AND DOWN CONTROLS
-
     if (keyPressed.KeyQ) {
         eye[1] += look[1];
         target[1] += look[1];
@@ -192,11 +188,8 @@ function update() {
 }
 
 function render() {
-
-    // Only clear once
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    // Call render function of each scene object
     for (let object of objects) {
         object.Render();
     }

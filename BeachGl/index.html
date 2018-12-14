@@ -6,6 +6,7 @@
 
 		<script id="vertex-shader" type="x-shader/x-vertex">#version 300 es
 			in vec4 vPosition;
+
 			// TODO: Nimm Normalen als Attribut entgegen
 			in vec4 vNormal;
 
@@ -22,12 +23,13 @@
             uniform vec4 ka;
             uniform vec4 kd;
             uniform vec4 ks;
+            uniform int n;
 
 			// TODO: Definiere alle Konstanten c_1, c_2, c_3
             const c_1 = 0.1;
             const c_2 = 0.0003;
             const c_3 = 0.000005;
-						const n = 4.0;
+			n = 4.0;
 
 			out vec4 vfColor;
 
@@ -40,36 +42,27 @@
 				gl_Position = magicMatrix * viewMatrix * modelMatrix * vPosition;
 
 				// TODO: Berechne die Normalenmatrix
-
-        let normalMatrix = transpose(inverse(viewMatrix*modelMatrix));
+        		let normalMatrix = transpose(inverse(viewMatrix*modelMatrix));
 
 				// TODO: Rechne alle übergebenen Koordinaten (Lichtposition, Normalen) in das Kamerakoordinatensystem um
-				vec4 Normal = normalMatrix * vNormal;
-				vec4 Lightposition  =  viewMatrix* modelMatrix * lightPosition;
-
-
+				vec4 normal = normalMatrix * vNormal;
+				vec4 cameraLightposition  =  viewMatrix* modelMatrix * lightPosition;
 
 				// TODO: Berechne und normalisiere die Vektoren L, N, R und V
-				let N = normalize(Normal);
-				let L = normalize(Lightposition);
-				let R = normalize(reflect(Lightposition, Normal));
+				let N = normalize(normal);
+				let L = normalize(cameraLightposition);
+				let R = normalize(reflect(cameraLightposition, Normal));
 				let V = normalize(vPosition);
-
-
-
-
 
 				// TODO: Berechne die Distanz d, sowie f_{att}
 				let d = length(L) ;
 				let f_att = min(1.0/(c_1+c_2*d+c_3*d*d), 1.0);
-
 
 				// TODO: Berechne die Farbe vfColor anhand der Phong-Beleuchtungsgleichung
 				let ambient = Ia * ka;
 				let diffus = Id * kd * max(0.0, dot(N,L);
 				let spekular = Is * ks * pow(max(0.0, dot(R, V)), n);
 				vfColor = ambient + f_att * (diffus + spekular);
-
 			}
 		</script>
 		<script id="fragment-shader" type="x-shader/x-fragment">#version 300 es

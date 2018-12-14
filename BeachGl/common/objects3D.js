@@ -8513,13 +8513,13 @@ class PalmTree extends Object3D {
 
         this.InitBuffers();
     }
-};
+}
 
 class PalmLeaves extends Object3D {
 
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             0.136462,2.989483,1.889057,0.015102,-0.970490,-0.240670,
@@ -8762,12 +8762,12 @@ class PalmLeaves extends Object3D {
 
         this.InitBuffers();
     }
-};
+}
 
 class Tree1 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -2.286125,1.491408,2.204079,0.000000,-1.000000,-0.000000,
@@ -8835,12 +8835,12 @@ class Tree1 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class Tree2 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -1.883294,1.390554,1.658770,0.000000,-1.000000,-0.000000,
@@ -8908,12 +8908,12 @@ class Tree2 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class Tree3 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -1.596823,1.413721,0.669179,0.000000,-1.000000,0.000000,
@@ -8974,12 +8974,12 @@ class Tree3 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class Tree4 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -2.408999,1.597847,0.393814,0.000000,-1.000000,-0.000000,
@@ -9046,12 +9046,12 @@ class Tree4 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class TreeLeaves1 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -2.307218,1.711024,2.242979,0.023456,-0.887837,0.459561,
@@ -9382,12 +9382,12 @@ class TreeLeaves1 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class TreeLeaves2 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -1.917016,1.984798,1.715596,-0.290564,-0.916721,0.274217,
@@ -9718,12 +9718,12 @@ class TreeLeaves2 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class TreeLeaves3 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -1.579135,1.818877,0.607028,-0.506008,-0.851203,-0.139321,
@@ -10054,12 +10054,12 @@ class TreeLeaves3 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class TreeLeaves4 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -2.411045,3.525888,0.429485,0.288612,-0.811025,0.508863,
@@ -10390,12 +10390,12 @@ class TreeLeaves4 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class Sea extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             3.350601,-1.019296,2.879693,0.998446,0.014527,0.053793,
@@ -11990,12 +11990,12 @@ class Sea extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class Stone1 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -0.190267,1.643240,-2.773966,-0.981485,-0.190403,0.020836,
@@ -12198,12 +12198,12 @@ class Stone1 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class Stone2 extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -0.013114,1.449863,-1.764049,-0.237787,-0.943628,0.230270,
@@ -12534,12 +12534,12 @@ class Stone2 extends Object3D{
         this.InitBuffers();
     }
 
-};
+}
 
 class Surface extends Object3D{
     constructor() {
 
-        super();
+        super([0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -2.989035,-0.980299,-2.991653,-0.999153,-0.032561,-0.025175,
