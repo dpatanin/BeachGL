@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6045ace5-acde-4ddf-8090-88524f3f4201" name="Default Changelist" comment="Refactored and some renaming">
-      <change afterPath="$PROJECT_DIR$/BeachGl/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeachGl/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeachGl/water_diffuse.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeachGl/water_normal.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeachGl/common/objects3D.js" beforeDir="false" afterPath="$PROJECT_DIR$/BeachGl/common/objects3D.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeachGl/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/BeachGl/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeachGl/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/BeachGl/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,24 +86,24 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="4" />
-          <entry key="js" value="174" />
+          <entry key="js" value="243" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="4" />
-          <entry key="JavaScript" value="174" />
+          <entry key="JavaScript" value="243" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BeachGl/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1014">
-              <caret line="190" column="1" selection-start-line="190" selection-start-column="1" selection-end-line="190" selection-end-column="1" />
+            <state relative-caret-position="96">
+              <caret line="91" column="35" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -144,16 +138,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BeachGl/common/objects3D.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="30" lean-forward="true" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+            <state relative-caret-position="780">
+              <caret line="8547" column="97" selection-start-line="8547" selection-start-column="97" selection-end-line="8547" selection-end-column="97" />
               <folding>
                 <element signature="n#PalmTree#0" />
                 <element signature="e#2986#426846#0" />
                 <element signature="e#426872#488674#0" />
-                <element signature="n#PalmLeaves#0" />
                 <element signature="e#488879#500586#0" />
                 <element signature="e#500612#502046#0" />
                 <element signature="n#Tree1#0" />
@@ -239,8 +232,8 @@
         <option value="$PROJECT_DIR$/SQLA3" />
         <option value="$PROJECT_DIR$/BeachGl/common/gl-matrix.js" />
         <option value="$PROJECT_DIR$/BeachGl/index.html" />
-        <option value="$PROJECT_DIR$/BeachGl/common/objects3D.js" />
         <option value="$PROJECT_DIR$/BeachGl/main.js" />
+        <option value="$PROJECT_DIR$/BeachGl/common/objects3D.js" />
       </list>
     </option>
   </component>
@@ -290,7 +283,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548175559017" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548176315663" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/normalAndDisplacementMappingTODOs" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -348,7 +341,7 @@
       <workItem from="1544794011722" duration="7834000" />
       <workItem from="1544803653479" duration="1232000" />
       <workItem from="1545128103565" duration="3156000" />
-      <workItem from="1548172637106" duration="2762000" />
+      <workItem from="1548172637106" duration="3707000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored and some renaming">
       <created>1544801417558</created>
@@ -361,7 +354,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44602000" />
+    <option name="totallyTimeSpent" value="45547000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -511,15 +504,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BeachGl/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="91" column="35" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BeachGl/common/objects3D.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="30" lean-forward="true" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+        <state relative-caret-position="780">
+          <caret line="8547" column="97" selection-start-line="8547" selection-start-column="97" selection-end-line="8547" selection-end-column="97" />
           <folding>
             <element signature="n#PalmTree#0" />
             <element signature="e#2986#426846#0" />
             <element signature="e#426872#488674#0" />
-            <element signature="n#PalmLeaves#0" />
             <element signature="e#488879#500586#0" />
             <element signature="e#500612#502046#0" />
             <element signature="n#Tree1#0" />
@@ -537,13 +536,6 @@
             <element signature="n#Stone2#0" />
             <element signature="n#Surface#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BeachGl/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1014">
-          <caret line="190" column="1" selection-start-line="190" selection-start-column="1" selection-end-line="190" selection-end-column="1" />
         </state>
       </provider>
     </entry>

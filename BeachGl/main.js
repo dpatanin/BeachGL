@@ -88,8 +88,8 @@ function main() {
     objects.push(surface);
 
     // Compute view matrix
-    eye = vec3.fromValues(0.0, 5.0, 4.0);
-    target = vec3.fromValues(0.0, 5.0, 0.0);
+    eye = vec3.fromValues(0.0, 3.0, 4.0);
+    target = vec3.fromValues(0.0, 3.0, 0.0);
     up = vec3.fromValues(0.0, 1.0, 0.0);
 
     viewMatrix = mat4.create();

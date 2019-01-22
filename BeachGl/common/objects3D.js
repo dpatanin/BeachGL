@@ -8545,7 +8545,7 @@ class PalmLeaves extends Object3D {
 
     constructor(program) {
 
-        super(program = defaultProgram,[0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
+        super(program = defaultProgram,[0.3, 0.6, 0.1, 1.0], [0.5, 0.9, 0.3, 1.0], [0.7, 0.9, 0.3, 1.0]);
 
         this.positions = [
             0.136462,2.989483,1.889057,0.015102,-0.970490,-0.240670,
@@ -9077,7 +9077,7 @@ class Tree4 extends Object3D{
 class TreeLeaves1 extends Object3D{
     constructor(program) {
 
-        super(program = defaultProgram,[0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
+        super(program = defaultProgram,[0.2, 0.5, 0.0, 1.0], [0.4, 0.8, 0.2, 1.0], [0.6, 0.9, 0.2, 1.0]);
 
         this.positions = [
             -2.307218,1.711024,2.242979,0.023456,-0.887837,0.459561,
@@ -9413,7 +9413,7 @@ class TreeLeaves1 extends Object3D{
 class TreeLeaves2 extends Object3D{
     constructor(program) {
 
-        super(program = defaultProgram,[0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
+        super(program = defaultProgram,[0.2, 0.5, 0.0, 1.0], [0.4, 0.8, 0.2, 1.0], [0.6, 0.9, 0.2, 1.0]);
 
         this.positions = [
             -1.917016,1.984798,1.715596,-0.290564,-0.916721,0.274217,
@@ -9749,7 +9749,7 @@ class TreeLeaves2 extends Object3D{
 class TreeLeaves3 extends Object3D{
     constructor(program) {
 
-        super(program = defaultProgram,[0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
+        super(program = defaultProgram,[0.2, 0.5, 0.0, 1.0], [0.4, 0.8, 0.2, 1.0], [0.6, 0.9, 0.2, 1.0]);
 
         this.positions = [
             -1.579135,1.818877,0.607028,-0.506008,-0.851203,-0.139321,
@@ -10085,7 +10085,7 @@ class TreeLeaves3 extends Object3D{
 class TreeLeaves4 extends Object3D{
     constructor(program) {
 
-        super(program = defaultProgram,[0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
+        super(program = defaultProgram,[0.2, 0.5, 0.0, 1.0], [0.4, 0.8, 0.2, 1.0], [0.6, 0.9, 0.2, 1.0]);
 
         this.positions = [
             -2.411045,3.525888,0.429485,0.288612,-0.811025,0.508863,
@@ -10491,7 +10491,7 @@ class Sea extends Object3D{
 class Stone1 extends Object3D{
     constructor(program) {
 
-        super(program = defaultProgram,[0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
+        super(program = defaultProgram,[0.128, 0.128, 0.128, 1.0], [0.128, 0.128, 0.128, 1.0], [0.128, 0.128, 0.128, 1.0]);
 
         this.positions = [
             -0.190267,1.643240,-2.773966,-0.981485,-0.190403,0.020836,
@@ -10699,7 +10699,7 @@ class Stone1 extends Object3D{
 class Stone2 extends Object3D{
     constructor(program) {
 
-        super(program = defaultProgram,[0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
+        super(program = defaultProgram,[0.128, 0.128, 0.128, 1.0], [0.128, 0.128, 0.128, 1.0], [0.128, 0.128, 0.128, 1.0]);
 
         this.positions = [
             -0.013114,1.449863,-1.764049,-0.237787,-0.943628,0.230270,
@@ -11035,7 +11035,7 @@ class Stone2 extends Object3D{
 class Surface extends Object3D{
     constructor(program) {
 
-        super(program = defaultProgram,[0.4, 0.2, 0.0, 1.0], [0.6, 0.3, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
+        super(program = defaultProgram,[0.5, 0.4, 0.0, 1.0], [0.6, 0.4, 0.0, 1.0], [0.7, 0.7, 0.7, 1.0]);
 
         this.positions = [
             -2.989035,-0.980299,-2.991653,-0.999153,-0.032561,-0.025175,
