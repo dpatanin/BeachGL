@@ -1,39 +1,24 @@
 let gl;
-let program;
+let defaultProgram,
+    waterProgram;
 
 let objects = [];
 
-let posLoc;
-
-let normalLoc,
-    lightPositionLoc,
-    IaLoc,
-    IdLoc,
-    IsLoc,
-    kaLoc,
-    kdLoc,
-    ksLoc,
-    specularExponentLoc;
-
-let modelMatrixLoc;
-
-let viewMatrixLoc,
-    viewMatrix;
+let viewMatrix,
+    projectionMatrix;
 
 let eye,
     target,
     up;
 
-const speed = 0.01;
-
 let keyPressed = {
     KeyW: false,
     KeyA: false,
     KeyS: false,
-    KeyD: false,
-    KeyQ: false,
-    KeyE: false
+    KeyD: false
 };
+
+const speed = 0.01;
 
 function main() {
 
@@ -48,48 +33,8 @@ function main() {
     gl.enable(gl.DEPTH_TEST);
 
     // Init shader program via additional function and bind it
-    program = initShaders(gl, "vertex-shader", "fragment-shader");
-    gl.useProgram(program);
-
-    // Get locations of shader variables
-    posLoc = gl.getAttribLocation(program, "vPosition");
-    modelMatrixLoc = gl.getUniformLocation(program, "modelMatrix");
-    viewMatrixLoc = gl.getUniformLocation(program, "viewMatrix");
-
-    // Globale Variablen mit Speicherlocations für Materialkoeffizienten und Lichtintensitäten
-    normalLoc = gl.getAttribLocation(program, "vNormal");
-    lightPositionLoc = gl.getUniformLocation(program, "lightPosition");
-    IaLoc = gl.getUniformLocation(program, "Ia");
-    IdLoc = gl.getUniformLocation(program, "Id");
-    IsLoc = gl.getUniformLocation(program, "Is");
-    kaLoc = gl.getUniformLocation(program, "ka");
-    kdLoc = gl.getUniformLocation(program, "kd");
-    ksLoc = gl.getUniformLocation(program, "ks");
-    specularExponentLoc = gl.getUniformLocation(program, "n");
-
-    // Initiale View Matrix
-    eye = vec3.fromValues(0.0, 0.8, 4.0);
-    target = vec3.fromValues(0.0, 0.8, 0.0);
-    up = vec3.fromValues(0.0, 1.0, 0.0);
-
-    viewMatrix = mat4.create();
-    mat4.lookAt(viewMatrix, eye, target, up);
-
-    gl.uniformMatrix4fv(viewMatrixLoc, false, viewMatrix);
-
-    // Position und Intensitäten der Lichtquelle als Uniform-Variablen
-    gl.uniform4fv(lightPositionLoc, [1.0, 2.0, 1.0, 0.0]);
-    gl.uniform4fv(IaLoc, [0.3, 0.3, 0.3, 1.0]);
-    gl.uniform4fv(IdLoc, [0.8, 0.8, 0.8, 1.0]);
-    gl.uniform4fv(IsLoc, [0.7, 0.7, 0.7, 1.0]);
-
-    document.addEventListener("mousemove", changeView);
-    document.addEventListener("keydown", keyDownHandler);
-    document.addEventListener("keyup", keyUpHandler);
-
-    canvas.onmousedown = function () {
-        canvas.requestPointerLock();
-    };
+    defaultProgram = initShaders(gl, "vertex-shader", "fragment-shader");
+    waterProgram = initShaders(gl, "vertex-shader-water", "fragment-shader-water");
 
     // Object instances
     let palmTree = new PalmTree();
@@ -142,59 +87,90 @@ function main() {
     let surface = new Surface();
     objects.push(surface);
 
+    // Compute view matrix
+    eye = vec3.fromValues(0.0, 5.0, 4.0);
+    target = vec3.fromValues(0.0, 5.0, 0.0);
+    up = vec3.fromValues(0.0, 1.0, 0.0);
+
+    viewMatrix = mat4.create();
+    mat4.lookAt(viewMatrix, eye, target, up);
+
+    // Compute projection matrix
+    projectionMatrix = mat4.create();
+    mat4.perspective(projectionMatrix, Math.PI * 0.25, canvas.width / canvas.height, 0.5, 100);
+
+    for(let object of objects) {
+
+        gl.useProgram(object.shader);
+
+        // Set view and projection matrix
+        gl.uniformMatrix4fv(object.viewMatrixLoc, false, viewMatrix);
+        gl.uniformMatrix4fv(object.projectionMatrixLoc, false, projectionMatrix);
+
+        // Set position und intensity of the light source
+        gl.uniform3fv(object.lightPositionLoc, [1.0, 2.0, 1.0]);
+        gl.uniform4fv(object.IaLoc, [0.3, 0.3, 0.3, 1.0]);
+        gl.uniform4fv(object.IdLoc, [0.8, 0.8, 0.8, 1.0]);
+        gl.uniform4fv(object.IsLoc, [0.7, 0.7, 0.7, 1.0]);
+    }
+
+    document.addEventListener("keydown", keydown);
+    document.addEventListener("keyup", keyup);
+    document.addEventListener("mousemove", changeView);
+
+    canvas.onmousedown = function () {
+        canvas.requestPointerLock();
+    };
+
     gameLoop();
 }
 
-function update() {
+function update()
+{
     let look = vec3.create();
     vec3.sub(look, target, eye);
-    vec3.scale(look, look, speed * 10);
+    vec3.scale(look, look, speed);
 
-    if (keyPressed.KeyW) {
+    if(keyPressed.KeyW) {
         eye[0] += look[0];
         eye[2] += look[2];
         target[0] += look[0];
         target[2] += look[2];
     }
-    if (keyPressed.KeyS) {
+    if(keyPressed.KeyS) {
         eye[0] -= look[0];
         eye[2] -= look[2];
         target[0] -= look[0];
         target[2] -= look[2];
     }
-    if (keyPressed.KeyA) {
+    if(keyPressed.KeyA) {
         eye[0] += look[2];
         eye[2] -= look[0];
         target[0] += look[2];
         target[2] -= look[0];
     }
-    if (keyPressed.KeyD) {
+    if(keyPressed.KeyD) {
         eye[0] -= look[2];
         eye[2] += look[0];
         target[0] -= look[2];
         target[2] += look[0];
     }
-    if (keyPressed.KeyQ) {
-        eye[1] += look[1];
-        target[1] += look[1];
-    }
-    if (keyPressed.KeyE) {
-        eye[1] -= look[1];
-        target[1] -= look[1];
-    }
-
     mat4.lookAt(viewMatrix, eye, target, up);
-    gl.uniformMatrix4fv(viewMatrixLoc, false, viewMatrix);
+    for(let object of objects) {
+        gl.useProgram(object.shader);
+        gl.uniformMatrix4fv(object.viewMatrixLoc, false, viewMatrix);
+    }
 }
 
 function render() {
+
+    // Only clear once
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    for (let object of objects) {
+    // Call render function of each scene object
+    for(let object of objects) {
         object.Render();
-    }
-
-    requestAnimationFrame(render);
+    };
 }
 
 
@@ -204,19 +180,24 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-function keyDownHandler(e) {
+function keydown(e)
+{
     keyPressed[e.code] = true;
 }
 
-function keyUpHandler(e) {
+function keyup(e)
+{
     keyPressed[e.code] = false;
 }
 
-function changeView(e) {
+function changeView(e)
+{
     vec3.rotateY(target, target, eye, -e.movementX * speed);
     mat4.lookAt(viewMatrix, eye, target, up);
-    gl.uniformMatrix4fv(viewMatrixLoc, false, viewMatrix);
-
+    for(let object of objects) {
+        gl.useProgram(object.shader);
+        gl.uniformMatrix4fv(object.viewMatrixLoc, false, viewMatrix);
+    }
 }
 
 main();

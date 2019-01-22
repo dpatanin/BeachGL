@@ -5,64 +5,53 @@
 		<title>WebGL Example</title>
 
 		<script id="vertex-shader" type="x-shader/x-vertex">#version 300 es
-			in vec4 vPosition;
 
-			// TODO: Nimm Normalen als Attribut entgegen
-			in vec4 vNormal;
+			in vec4 vPosition;
+			in vec3 vNormal;
 
 			uniform mat4 modelMatrix;
 			uniform mat4 viewMatrix;
+			uniform mat4 projectionMatrix;
 
-			// TODO: Nimm die Position der Lichtquelle als Uniform-Variable entgegen
-            uniform vec4 lightPosition;
+			uniform vec3 lightPosition;
 
-			// TODO: Nimm alle Koeffizienten und Intensitäten als Uniform-Variablen entgegen
-            uniform vec4 Ia;
-            uniform vec4 Id;
-            uniform vec4 Is;
-            uniform vec4 ka;
-            uniform vec4 kd;
-            uniform vec4 ks;
-            uniform int n;
+			uniform vec4 Ia;
+			uniform vec4 Id;
+			uniform vec4 Is;
+			uniform vec4 ka;
+			uniform vec4 kd;
+			uniform vec4 ks;
+			uniform float specExp;
 
-			// TODO: Definiere alle Konstanten c_1, c_2, c_3
-            const c_1 = 0.1;
-            const c_2 = 0.0003;
-            const c_3 = 0.000005;
-			n = 4.0;
+			const float c1 = 1.0;
+			const float c2 = 0.0005;
+			const float c3 = 0.000003;
 
 			out vec4 vfColor;
 
 			void main()
 			{
-				const mat4 magicMatrix = mat4(
-					1.2071068286895752, 0, 0, 0, 0, 2.4142136573791504, 0, 0,
-					0, 0, -1.0100502967834473, -1, 0, 0, -1.0050251483917236, 0);
+				mat4 modelViewMatrix = viewMatrix * modelMatrix;
+				mat4 normalMatrix = inverse(transpose(modelViewMatrix));
 
-				gl_Position = magicMatrix * viewMatrix * modelMatrix * vPosition;
+				vec4 position = modelViewMatrix * vPosition;
+				vec4 normal = normalMatrix * vec4(vNormal, 0.0);
+				vec4 lightPos = viewMatrix * vec4(lightPosition, 1.0);
 
-				// TODO: Berechne die Normalenmatrix
-        		let normalMatrix = transpose(inverse(viewMatrix*modelMatrix));
+				vec3 N = normalize(normal.xyz);
+				vec3 L = normalize((lightPos - position).xyz);
+				vec3 V = normalize((-position).xyz);
+				vec3 R = reflect(-L, N);
 
-				// TODO: Rechne alle übergebenen Koordinaten (Lichtposition, Normalen) in das Kamerakoordinatensystem um
-				vec4 normal = normalMatrix * vNormal;
-				vec4 cameraLightposition  =  viewMatrix* modelMatrix * lightPosition;
+				float d = distance(lightPos, position);
+				float fAtt = min(1.0/(c1 + c2 * d + c3 * pow(d, 2.0)), 1.0);
 
-				// TODO: Berechne und normalisiere die Vektoren L, N, R und V
-				let N = normalize(normal);
-				let L = normalize(cameraLightposition);
-				let R = normalize(reflect(cameraLightposition, Normal));
-				let V = normalize(vPosition);
+				vec4 I 	= Ia * ka
+						+ fAtt * (Id * kd * max(dot(N, L), 0.0)
+						+ Is * ks * pow(max(dot(R, V), 0.0), specExp));
+				vfColor = vec4(I.xyz, 1.0);
 
-				// TODO: Berechne die Distanz d, sowie f_{att}
-				let d = length(L) ;
-				let f_att = min(1.0/(c_1+c_2*d+c_3*d*d), 1.0);
-
-				// TODO: Berechne die Farbe vfColor anhand der Phong-Beleuchtungsgleichung
-				let ambient = Ia * ka;
-				let diffus = Id * kd * max(0.0, dot(N,L);
-				let spekular = Is * ks * pow(max(0.0, dot(R, V)), n);
-				vfColor = ambient + f_att * (diffus + spekular);
+				gl_Position = projectionMatrix * position;
 			}
 		</script>
 		<script id="fragment-shader" type="x-shader/x-fragment">#version 300 es
@@ -74,6 +63,102 @@
 			void main()
 			{
 				fColor = vfColor;
+			}
+		</script>
+		<script id="vertex-shader-water" type="x-shader/x-vertex">#version 300 es
+
+			in vec4 vPosition;
+			in vec3 vNormal;
+			in vec2 vTexCoord;
+
+			uniform mat4 modelMatrix;
+			uniform mat4 viewMatrix;
+			uniform mat4 projectionMatrix;
+
+			uniform vec3 lightPosition;
+
+			// TODO 2.2: Füge Timer als uniforme Variable hinzu.
+
+
+			out vec4 positionCam;
+			out vec4 normalCam;
+			out vec4 lightPosCam;
+
+			out vec2 vfTexCoord;
+
+			void main()
+			{
+				// TODO 2.1: Berechne in y-Richtung verschobenen Vertex anhand von Sinus-/Cosinusfunktion.
+
+
+				// TODO 2.5: Berechne neue Normale (Tipps werden in der Übung am 24.1. gegeben).
+
+
+				mat4 modelViewMatrix = viewMatrix * modelMatrix;
+				mat4 normalMatrix = inverse(transpose(modelViewMatrix));
+
+				// TODO 2.6: Passe die folgenden zwei Zeilen so an, dass die !verschobene! Vertexposition und -normale in Kamerakoordinaten überführt werden.
+				positionCam = modelViewMatrix * vPosition;
+				normalCam = normalMatrix * vec4(vNormal, 0.0);
+
+				lightPosCam = viewMatrix * vec4(lightPosition, 1.0);
+
+				gl_Position = projectionMatrix * positionCam;
+
+				vfTexCoord = vTexCoord;
+			}
+		</script>
+		<script id="fragment-shader-water" type="x-shader/x-fragment">#version 300 es
+			precision mediump float;
+
+			in vec4 positionCam;
+			in vec4 normalCam;
+			in vec4 lightPosCam;
+
+			in vec2 vfTexCoord;
+
+			uniform vec4 Ia;
+			uniform vec4 Id;
+			uniform vec4 Is;
+			uniform vec4 ka;
+			uniform vec4 kd;
+			uniform vec4 ks;
+			uniform float specExp;
+
+			const float c1 = 1.0;
+			const float c2 = 0.0005;
+			const float c3 = 0.000003;
+
+			uniform sampler2D diffuseMap;
+			// TODO 1.2: Füge Normal Map als uniforme Variable hinzu.
+
+
+			out vec4 fColor;
+
+			void main()
+			{
+				// TODO	1.5: Berechne (normalisierte) Normale, Tangente und Binormale im Kameraraum (der Code findet sich in den Übungsfolien vom 17.01.).
+
+                // TODO 1.6: Stelle TBN-Matrix zur Transformation vom Kamera- in den Tangentenraum auf.
+
+
+				// TODO 1.7: Lese Normale aus Normal Map aus, verschiebe ihren Wertebereich und transformiere sie anschließend mit der TBN-Matrix vom Tangentenraum in den Kameraraum. (Kommentiere hiezu zunächst die folgende Zeile aus.)
+				vec3 N = normalize(normalCam.xyz);
+
+				// Calculate and normalize L, V and R
+				vec3 L = normalize((lightPosCam - positionCam).xyz);
+				vec3 V = normalize((-positionCam).xyz);
+				vec3 R = reflect(-L, N);
+
+				float d = distance(lightPosCam, positionCam);
+				float fAtt = min(1.0/(c1 + c2 * d + c3 * pow(d, 2.0)), 1.0);
+
+				vec4 diffuseColor = texture(diffuseMap, vfTexCoord);
+
+				vec4 I 	= Ia * ka
+						+ fAtt * (Id * diffuseColor * max(dot(N, L), 0.0)
+						+ Is * ks * pow(max(dot(R, V), 0.0), specExp));
+				fColor = vec4(I.xyz, 1.0);
 			}
 		</script>
 		<script type="text/javascript" src="common/initShaders.js"></script>
